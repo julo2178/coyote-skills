@@ -32,6 +32,20 @@ mkdir -p ~/.claude/skills/coyote-jd-scorer-fr && \
 
 ---
 
+### `coyote-network-reactivation` — Reconnect with dormant contacts without burning goodwill
+
+A system for running a structured reactivation campaign across your professional network. Triages your LinkedIn connections by relationship strength and career chapter, generates archetype-matched DM templates (ex-manager, ex-peer, ex-direct report, ex-client, cross-functional) in EN and FR, and walks you through a workflow that prioritises reconnecting first — before any ask.
+
+Includes: SKILL.md, DM templates, anti-patterns guide, Notion tracker template, Python script to classify a LinkedIn CSV export.
+
+```bash
+mkdir -p ~/.claude/skills/coyote-network-reactivation && \
+  curl -fsSL https://raw.githubusercontent.com/julo2178/coyote-skills/main/coyote-network-reactivation/SKILL.md \
+  -o ~/.claude/skills/coyote-network-reactivation/SKILL.md
+```
+
+---
+
 ## Licence
 
 MIT — free to use, fork, adapt.
