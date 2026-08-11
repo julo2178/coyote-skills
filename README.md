@@ -32,16 +32,25 @@ mkdir -p ~/.claude/skills/coyote-jd-scorer-fr && \
 
 ---
 
-### `coyote-network-reactivation` — Reconnect with dormant contacts without burning goodwill
+### `coyote-network-reactivation` · Renouer avec vos contacts dormants sans brûler le lien
 
-A system for running a structured reactivation campaign across your professional network. Triages your LinkedIn connections by relationship strength and career chapter, generates archetype-matched DM templates (ex-manager, ex-peer, ex-direct report, ex-client, cross-functional) in EN and FR, and walks you through a workflow that prioritises reconnecting first — before any ask.
+Un système pour mener une campagne structurée de réactivation sur votre réseau professionnel. Il trie vos relations LinkedIn par force du lien et par chapitre de carrière, produit des modèles de messages appariés à cinq archétypes (ancien manager, ancien pair, ancien collaborateur direct, ancien client, transverse) en FR et EN, et déroule une méthode qui reconnecte d'abord, avant toute demande.
 
-Includes: SKILL.md, DM templates, anti-patterns guide, Notion tracker template, Python script to classify a LinkedIn CSV export.
+Contenu : SKILL.md, les modèles de messages, le guide d'anti-patterns, le schéma du suivi Notion, et un script Python qui classe un export CSV LinkedIn contre votre parcours.
+
+**Skill en français.** Les modèles de messages sont fournis dans les deux langues.
+
+Installation en un fichier, depuis la dernière release :
 
 ```bash
-mkdir -p ~/.claude/skills/coyote-network-reactivation && \
-  curl -fsSL https://raw.githubusercontent.com/julo2178/coyote-skills/main/coyote-network-reactivation/SKILL.md \
-  -o ~/.claude/skills/coyote-network-reactivation/SKILL.md
+curl -fsSL -o coyote-network-reactivation.skill \
+  https://github.com/julo2178/coyote-skills/releases/latest/download/coyote-network-reactivation.skill
+```
+
+Sur Claude.ai, importez ce fichier dans Paramètres → Compétences. Pour Claude Code, dézippez-le dans votre répertoire de skills :
+
+```bash
+unzip coyote-network-reactivation.skill -d ~/.claude/skills/
 ```
 
 ---

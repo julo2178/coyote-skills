@@ -1,173 +1,173 @@
 ---
-name: network-reactivation
-description: Build and run a structured reactivation campaign for dormant LinkedIn contacts (ex-colleagues, ex-managers, ex-clients) you have lost touch with over the years. Triggers when the user mentions reconnecting with old contacts, reactivating their network, reaching out to former colleagues, building a list of past relationships, processing a LinkedIn connections export, drafting reconnection DMs, or asking how to reach out to people they have not spoken to in years. Use this skill whenever someone wants to systematically reconnect with their dormant professional network rather than send one-off messages, even if they do not explicitly use the word "reactivation". The skill produces a triage system, archetype-matched DM templates in EN and FR, and a workflow that prioritizes warmth over transactional outreach.
+name: coyote-network-reactivation
+description: Construire et mener une campagne structurée de réactivation de contacts LinkedIn dormants (anciens collègues, anciens managers, anciens clients) perdus de vue depuis des années. À déclencher quand l'utilisateur parle de renouer avec d'anciens contacts, de réactiver son réseau, de recontacter d'anciens collègues, de constituer une liste de relations passées, de traiter un export CSV de connexions LinkedIn, de rédiger des messages de reprise de contact, ou demande comment réaborder quelqu'un qu'il n'a pas eu au téléphone depuis des années. Vaut aussi pour les formulations anglaises (reconnect with my network, reactivate LinkedIn contacts, warm outreach to former colleagues). À utiliser dès que quelqu'un veut renouer méthodiquement avec son réseau dormant plutôt qu'envoyer des messages au coup par coup, même sans employer le mot réactivation. La skill produit un système de tri, des modèles de messages appariés à cinq archétypes en FR et EN, et un déroulé qui privilégie la chaleur relationnelle sur la transaction.
 ---
 
-# Network Reactivation
+# Réactivation réseau
 
-A system for reconnecting with dormant warm relationships in a way that builds long-term capital instead of burning it.
+Un système pour renouer avec des relations dormantes de façon à construire du capital relationnel au lieu de le brûler.
 
-## When this matters
+## Pourquoi ça compte
 
-People accumulate hundreds of professional relationships over a career. Most go cold. The classic mistakes when trying to reconnect:
+On accumule des centaines de relations professionnelles sur une carrière. La plupart refroidissent. Les trois erreurs classiques quand on essaie de les rallumer :
 
-1. **Bulk DM energy.** Generic openers ("Hope you're well!") that pattern-match instantly to mass outreach and get ignored.
-2. **Transactional framing.** Leading with an ask (job, intro, advice) before re-establishing the relationship.
-3. **No system.** One-off messages with no tracking, no review loop, no priority. Three weeks in, the campaign collapses.
+1. **L'énergie du message de masse.** Des accroches génériques (« J'espère que tu vas bien ! ») que le destinataire identifie en une seconde comme de l'envoi en nombre, et qu'il ignore.
+2. **Le cadrage transactionnel.** Ouvrir sur une demande (un poste, une intro, un conseil) avant d'avoir rétabli la relation.
+3. **L'absence de système.** Des messages au coup par coup, sans suivi, sans relecture, sans priorité. Au bout de trois semaines la campagne s'effondre.
 
-This skill prevents all three by building structure first, then content second, with a coach-review loop baked in.
+Cette skill neutralise les trois : d'abord la structure, ensuite le contenu, avec une boucle de relecture intégrée.
 
-## Core principle
+## Le principe central
 
-**Reconnect first. Intent comes later.**
+**Reconnecter d'abord. L'intention vient après.**
 
-Every opener written under this skill is purely relational. Zero mention of jobs, projects, products, or anything you might want from the contact. The relationship gets re-established before any ask is ever raised. This is not optional: it is what separates this approach from spammy reach-out templates.
+Toute accroche écrite sous cette skill est purement relationnelle. Zéro mention d'un poste, d'un projet, d'un produit ou de quoi que ce soit qu'on pourrait vouloir du contact. La relation se rétablit avant que la moindre demande ne soit posée. Ce n'est pas optionnel : c'est ce qui sépare cette approche des modèles de prospection déguisée.
 
-## The five archetypes
+## Les cinq archétypes
 
-People relate to you differently based on the original power dynamic. The same opener cannot work across all of them:
+Les gens se situent différemment par rapport à vous selon le rapport de force d'origine. Une seule accroche ne peut pas couvrir les cinq cas :
 
-1. **Ex-manager** (they were senior to you) → respectful, anchored in a specific moment they led or taught
-2. **Ex-peer** (same level, worked closely) → warm, equal footing, shared trench memory
-3. **Ex-direct-report** (you managed them) → care-driven, invest in them not extract from them
-4. **Ex-client** (they paid for your work) → non-transactional, prove no ask in opener
-5. **Cross-functional / faded** (knew each other distantly) → low-pressure, easy out built in
+1. **Ancien manager** (il vous était hiérarchiquement supérieur) : respectueux, ancré sur un moment précis qu'il a mené ou enseigné.
+2. **Ancien pair** (même niveau, collaboration serrée) : chaleureux, d'égal à égal, souvenir de tranchée partagé.
+3. **Ancien collaborateur direct** (vous l'avez managé) : orienté attention, on investit sur lui, on n'extrait rien.
+4. **Ancien client** (il a payé pour votre travail) : non transactionnel, la preuve de non-demande se fait dans l'accroche.
+5. **Transverse ou éteint** (connaissance lointaine) : sans pression, avec une porte de sortie intégrée.
 
-Templates for each archetype in EN and FR live in `templates/dm-templates.md`.
+Les modèles par archétype, en FR et EN, sont dans `templates/dm-templates.md`.
 
-## Workflow
+## Déroulé
 
-### Phase 1 — Build the tracking infrastructure
+### Phase 1 : poser l'infrastructure de suivi
 
-Before any outreach, create a database (Notion, Airtable, or even a structured spreadsheet) with these fields:
+Avant toute prise de contact, créer une base (Notion, Airtable, ou même un tableur structuré) avec ces champs :
 
-**Identity**: Name, Current Role, Current Company, LinkedIn URL
-**Relationship history**: How we met (company name), Era, Their role then, Relationship type (manager / peer / direct report / client / cross-functional), Strength (strong / warm / faded)
-**Geo + density**: Geo (Paris / London / Bordeaux / etc.), Mutual connections count
-**Outreach state**: Status (To triage / To contact / DM sent / Reply received / Catch-up booked / Active relationship / Out of reach), Priority, Last contact date, DM sent date, Notes
-**Review layer**: Reviewed by coach (checkbox), Coach comment
+**Identité** : Nom, Poste actuel, Entreprise actuelle, URL LinkedIn
+**Historique relationnel** : Où on s'est connus (nom de l'entreprise), Époque, Son poste à l'époque, Type de relation (manager / pair / collaborateur direct / client / transverse), Force du lien (fort / tiède / éteint)
+**Géo et densité** : Géo (Paris / Londres / Bordeaux / etc.), Nombre de relations communes
+**État de la prise de contact** : Statut (À trier / À contacter / Message envoyé / Réponse reçue / Échange calé / Relation active / Hors d'atteinte), Priorité, Date du dernier contact, Date d'envoi du message, Notes
+**Couche de relecture** : Relu par le coach (case à cocher), Commentaire du coach
 
-A ready-to-use Notion template is referenced in `references/notion-template.md`.
+Un modèle Notion prêt à l'emploi est décrit dans `references/notion-template.md`.
 
-### Phase 2 — Source the contact list
+### Phase 2 : constituer la liste
 
-Two complementary sources, run in parallel:
+Deux sources complémentaires, à mener en parallèle :
 
-**A. LinkedIn CSV export (breadth)**
-1. Settings & Privacy → Data Privacy → Get a copy of your data → tick "Connections" only → Request archive
-2. LinkedIn delivers the CSV by email in ~10 minutes
-3. CSV contains: First Name, Last Name, URL, Email Address, Company, Position, Connected On
+**A. Export CSV LinkedIn (la largeur)**
+1. Préférences et confidentialité → Confidentialité des données → Obtenir une copie de vos données → cocher « Relations » uniquement → Demander l'archive.
+2. LinkedIn envoie le CSV par e-mail en une dizaine de minutes.
+3. Le CSV contient : First Name, Last Name, URL, Email Address, Company, Position, Connected On.
 
-**B. Brain-dump (depth)**
-For each major chapter of your career (employer, client, project), list the people you actually worked with daily. Names you remember without prompting are the warmest. Vague memories ("Maria something, designer") still go in: the CSV will fill the gaps.
+**B. Vidage de mémoire (la profondeur)**
+Pour chaque chapitre de votre carrière (employeur, client, projet), listez les gens avec qui vous avez réellement travaillé au quotidien. Les noms qui remontent sans effort sont les plus chauds. Les souvenirs flous (« Maria quelque chose, designer ») comptent aussi : le CSV comblera les trous.
 
-### Phase 3 — Classify and triage
+### Phase 3 : classer et trier
 
-Using the script in `scripts/classify-csv.py` (or manually), enrich each CSV row with:
-- `How we met` based on the Company field matched against the user's career history (provided as input)
-- `Era` based on `Connected On` date
-- All entries default to `Status = To triage` and `Strength = warm`
+Avec le script `scripts/classify-csv.py` (ou à la main), enrichir chaque ligne du CSV :
+- `Où on s'est connus` à partir du champ Company confronté à l'historique de carrière fourni en entrée.
+- `Époque` à partir de la date `Connected On`.
+- Toutes les entrées démarrent en `Statut = À trier` et `Force = tiède`.
 
-After classification, the user reviews the triage queue and sets:
-- `Strength` (Strong / Warm / Faded)
-- `Priority` (High / Medium / Low)
-- `Relationship type` (Manager / Peer / Direct report / Client / Cross-functional)
+Après classement, l'utilisateur passe la file de tri et fixe :
+- `Force du lien` (Fort / Tiède / Éteint)
+- `Priorité` (Haute / Moyenne / Basse)
+- `Type de relation` (Manager / Pair / Collaborateur direct / Client / Transverse)
 
-This is a manual pass: only the user knows the relational context. Do not try to infer relationship type from job titles alone.
+C'est une passe manuelle : seul l'utilisateur connaît le contexte relationnel. Ne jamais déduire le type de relation du seul intitulé de poste.
 
-### Phase 4 — Draft DMs using templates
+### Phase 4 : rédiger les messages
 
-For each `To contact` entry, use the matching template from `templates/dm-templates.md`. Fill in the bracketed variables:
-- `[First name]`
-- `[specific moment]` — a concrete shared memory, never generic
-- `[current company]`
-- For ex-managers: a specific thing they taught or led
-- For ex-peers: a specific shared trench moment
-- For ex-direct-reports: a specific moment that earned your respect
-- For ex-clients: a specific outcome from the engagement
+Pour chaque entrée `À contacter`, prendre le modèle correspondant dans `templates/dm-templates.md` et remplir les variables entre crochets :
+- `[Prénom]`
+- `[moment précis]` : un souvenir partagé concret, jamais générique
+- `[entreprise actuelle]`
+- Pour un ancien manager : une chose précise qu'il a enseignée ou tranchée
+- Pour un ancien pair : un moment de tranchée partagé
+- Pour un ancien collaborateur direct : un moment précis qui a forcé le respect
+- Pour un ancien client : un résultat concret de la mission
 
-If you cannot anchor the message in a specific memory, the contact is either too faded for a warm DM (use archetype 5: reintroduction) or you should skip them.
+Si vous ne parvenez pas à ancrer le message sur un souvenir précis, soit le contact est trop éteint pour un message chaleureux (passer à l'archétype 5, la réintroduction), soit il faut le sauter.
 
-### Phase 5 — Coach review loop
+### Phase 5 : la boucle de relecture
 
-Before sending, the user has a coach (LinkedIn visibility coach, mentor, or just a sharp peer) review every DM. The coach catches:
-- Generic openers that slipped through
-- Accidental ask in the close
-- Tone mismatch with the original relationship
-- Specifics that read as fabricated
+Avant l'envoi, faire relire chaque message par un coach (coach visibilité LinkedIn, mentor, ou simplement un pair exigeant). Le relecteur attrape :
+- Les accroches génériques passées entre les mailles
+- La demande glissée par accident dans la clôture
+- Le décalage de ton avec la relation d'origine
+- Les détails « précis » qui sonnent fabriqués
 
-Do not skip this step. Self-review fails because the writer is too close to the words.
+Ne sautez pas cette étape. L'auto-relecture échoue parce que l'auteur est trop près de ses propres mots.
 
-### Phase 6 — Send and track
+### Phase 6 : envoyer et suivre
 
-After coach approval:
-1. Send the DM
-2. Update the tracker: `Status = DM sent`, fill `DM sent date`
-3. Log any reply: `Status = Reply received`
-4. If a catch-up gets booked: `Status = Catch-up booked`
-5. After the first real conversation: `Status = Active relationship`
+Après validation :
+1. Envoyer le message.
+2. Mettre à jour le suivi : `Statut = Message envoyé`, renseigner la date d'envoi.
+3. Consigner toute réponse : `Statut = Réponse reçue`.
+4. Si un échange se cale : `Statut = Échange calé`.
+5. Après la première vraie conversation : `Statut = Relation active`.
 
-### Phase 7 — Reply handling
+### Phase 7 : gérer la réponse
 
-When a contact replies, the second message is where most reconnection campaigns die. The user freezes, defaults to "let's grab coffee", and the warmth dissipates.
+Quand un contact répond, c'est au deuxième message que la plupart des campagnes meurent. On se fige, on retombe sur « on se prend un café ? », et la chaleur retombe.
 
-Reply-handling rules per archetype are in `templates/dm-templates.md`. The general principle: ask one question about *their* current work before offering anything about yours. Let them open the door if they want to. Never push.
+Les règles de réponse par archétype sont dans `templates/dm-templates.md`. Le principe général : poser une question sur *son* travail à lui avant de proposer quoi que ce soit sur le vôtre. Laissez-le ouvrir la porte s'il en a envie. Ne poussez jamais.
 
-## Anti-patterns to refuse
+## Les anti-patterns à refuser
 
-When drafting DMs under this skill, refuse to generate any of the following:
+En rédigeant des messages sous cette skill, refusez de produire ce qui suit :
 
-1. **Generic openers** — "Hope you're well!", "Long time no see!", "Hi [name], saw your profile and thought I'd reach out". These pattern-match to bulk DM and the contact deletes within 5 seconds.
-2. **CV / portfolio / Calendly link in opener** — Even one link kills the warmth. The opener is text only.
-3. **Mission, job, or product mention in the first message** — Save for after they reply AND ask what you are doing now.
-4. **"Quick coffee?" close** — Implies obligation. Use "would love to hear what you are up to" instead.
-5. **Apologising for losing touch** — Lowers your status. State it neutrally or skip it.
-6. **Long monologues about the user's life** — They did not ask. One sentence max about the user, the rest is about them or the shared past.
+1. **Les accroches génériques** : « J'espère que tu vas bien ! », « Ça fait un bail ! », « Bonjour [prénom], je suis tombé sur ton profil et je me permets de te contacter ». Le destinataire les reconnaît comme de l'envoi en nombre et supprime en cinq secondes.
+2. **Un lien CV, portfolio ou Calendly dans l'accroche** : un seul lien tue la chaleur. L'accroche est du texte, rien d'autre.
+3. **Mention d'une mission, d'un poste ou d'un produit dans le premier message** : à garder pour après la réponse, ET seulement s'il demande ce que vous faites.
+4. **La clôture « on se prend un café ? »** : elle crée une obligation. Préférer « curieux de savoir ce que tu deviens ».
+5. **S'excuser d'avoir perdu le contact** : ça vous rabaisse. Le dire neutrement ou ne pas le dire.
+6. **Le monologue sur sa propre vie** : il n'a rien demandé. Une phrase maximum sur vous, tout le reste porte sur lui ou sur le passé commun.
 
-If the user asks to draft a DM that violates one of these patterns, push back once with the reason and offer the corrected version.
+Si l'utilisateur demande un message qui enfreint l'un de ces points, opposez une objection une fois, avec la raison, et proposez la version corrigée.
 
-## Output format for DM drafts
+## Format de sortie des messages
 
-Always format DM drafts as follows so the user can copy-paste straight into LinkedIn:
+Présentez toujours les brouillons ainsi, pour que l'utilisateur puisse copier-coller directement dans LinkedIn :
 
 ```
-=== [Contact Name] — [Archetype] ===
+=== [Nom du contact] · [Archétype] ===
 
-[Pre-flight check]
-- Anchor: [the specific memory the message hooks on]
-- Length: [word count]
-- Pattern check: ✓ no generic opener, ✓ no ask, ✓ specific anchor, ✓ low-pressure close
+[Contrôle avant envoi]
+- Ancrage : [le souvenir précis sur lequel le message accroche]
+- Longueur : [nombre de mots]
+- Vérifications : ✓ pas d'accroche générique, ✓ aucune demande, ✓ ancrage précis, ✓ clôture sans pression
 
-[DM body — copy from here]
-Hi [First name],
+[Corps du message, à copier à partir d'ici]
+Salut [Prénom],
 
 ...
 
-Best,
-[Your name]
-[End of DM]
+À très vite,
+[Votre prénom]
+[Fin du message]
 
-[Reply-handling note]
-If they reply: [archetype-specific guidance]
+[Note de gestion de réponse]
+S'il répond : [conseil propre à l'archétype]
 ```
 
-## Scope
+## Périmètre
 
-This skill covers:
-- Database schema design for relationship tracking
-- LinkedIn CSV parsing and classification
-- DM drafting across 5 archetypes in EN and FR
-- Coach-review workflow
-- Reply-handling guidance
+Cette skill couvre :
+- La conception du schéma de base pour le suivi relationnel
+- La lecture et le classement d'un export CSV LinkedIn
+- La rédaction de messages sur cinq archétypes, en FR et EN
+- Le déroulé de relecture par un coach
+- La conduite de la réponse
 
-This skill does not cover:
-- Cold outreach to people you have never met (different methodology, do not reuse these templates)
-- Sales prospecting (transactional by design, opposite framing)
-- Recruiter outreach (use a recruiter-specific template, not these)
+Cette skill ne couvre pas :
+- La prospection à froid vers des gens jamais rencontrés (autre méthodologie, ne pas réutiliser ces modèles)
+- La prospection commerciale (transactionnelle par nature, cadrage inverse)
+- L'approche de recruteurs (utiliser un modèle dédié, pas ceux-ci)
 
-## References
+## Références
 
-- `templates/dm-templates.md` — Full DM templates, 5 archetypes × EN+FR + reply-handling
-- `references/notion-template.md` — Database schema and 4 recommended views
-- `references/anti-patterns.md` — Detailed anti-patterns with examples
-- `scripts/classify-csv.py` — Optional script to bulk-classify a LinkedIn CSV export against a user-provided career history
+- `templates/dm-templates.md` : les modèles complets, 5 archétypes × FR et EN, plus la gestion de réponse
+- `references/notion-template.md` : le schéma de base et les 4 vues recommandées
+- `references/anti-patterns.md` : les anti-patterns détaillés, avec exemples avant/après
+- `scripts/classify-csv.py` : script optionnel pour classer en masse un export CSV LinkedIn contre un historique de carrière fourni

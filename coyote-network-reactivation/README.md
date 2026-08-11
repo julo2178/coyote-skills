@@ -1,81 +1,83 @@
-# Network Reactivation — Claude Skill
+# Réactivation réseau · une skill Claude
 
-A system for reconnecting with dormant warm relationships in a way that builds long-term capital instead of burning it.
+Un système pour renouer avec des relations professionnelles dormantes de façon à construire du capital relationnel au lieu de le brûler.
 
-## What's in the box
+## Ce qu'il y a dans la boîte
 
 ```
-network-reactivation/
-├── SKILL.md                          The main skill file (Claude reads this)
+coyote-network-reactivation/
+├── SKILL.md                          Le fichier principal, celui que Claude lit
 ├── templates/
-│   └── dm-templates.md              5 archetypes × EN+FR + reply-handling
+│   └── dm-templates.md               5 archétypes × FR et EN, plus la gestion de réponse
 ├── references/
-│   ├── notion-template.md           Database schema and recommended views
-│   └── anti-patterns.md             What kills warm DMs, with examples
+│   ├── notion-template.md            Schéma de base et vues recommandées
+│   └── anti-patterns.md              Ce qui tue un message, avec exemples avant/après
 └── scripts/
-    ├── classify-csv.py              Bulk-classify a LinkedIn CSV export
-    └── career.example.json          Example career history for the classifier
+    ├── classify-csv.py               Classement en masse d'un export CSV LinkedIn
+    └── career.example.json           Exemple d'historique de carrière pour le script
 ```
 
-## How to install
+## Installation
 
-### Option 1 — Install in Claude.ai or Claude Code
+### Option 1 : installer la skill dans Claude
 
-1. Download the `.skill` file (zipped folder of this repo)
-2. Upload to Claude.ai (Settings → Skills) or place in your Claude Code skills directory
-3. Trigger by saying anything like "help me reconnect with my old network", "I want to reactivate my LinkedIn contacts", or "draft a DM to an ex-manager I haven't spoken to in 5 years"
+1. Récupérez le fichier `network-reactivation.skill` dans la dernière release de ce dépôt.
+2. Sur Claude.ai : Paramètres → Capacités → Compétences → importer le fichier. Dans Claude Code : déposez le dossier dans votre répertoire de skills.
+3. Déclenchez-la en disant quelque chose comme « aide-moi à renouer avec mon ancien réseau », « je veux réactiver mes contacts LinkedIn », ou « écris un message à un ancien manager que je n'ai pas eu depuis 5 ans ».
 
-### Option 2 — Use the methodology directly
+### Option 2 : utiliser la méthode directement
 
-The skill is fully readable. Open `SKILL.md` and follow the 7-phase workflow even without Claude. The templates and anti-patterns work standalone.
+Tout est lisible en clair. Ouvrez `SKILL.md` et suivez le déroulé en 7 phases sans Claude. Les modèles et le document d'anti-patterns fonctionnent seuls.
 
-## The core principle
+## Le principe central
 
-**Reconnect first. Intent comes later.**
+**Reconnecter d'abord. L'intention vient après.**
 
-Every opener is purely relational. Zero mention of jobs, projects, products, or asks. The relationship is re-established before anything else is ever raised. This is what separates this approach from spammy reach-out templates.
+Toute accroche est purement relationnelle. Zéro mention de poste, de projet, de produit ou de demande. La relation se rétablit avant que quoi que ce soit ne soit demandé. C'est ce qui sépare cette approche des modèles de prospection déguisée.
 
-## The 5 archetypes
+## Les 5 archétypes
 
-People relate to you differently based on the original power dynamic:
+Les gens se situent différemment par rapport à vous selon le rapport de force d'origine :
 
-1. **Ex-manager** — respectful, anchored in a specific moment they led or taught
-2. **Ex-peer** — warm, equal footing, shared trench memory
-3. **Ex-direct-report** — care-driven, invest in them, not extract from them
-4. **Ex-client** — non-transactional, prove no ask in opener
-5. **Cross-functional / faded** — low-pressure, easy out built in
+| Archétype | Ton |
+| --- | --- |
+| Ancien manager | Respectueux, ancré sur ce qu'il a enseigné ou tranché |
+| Ancien pair | Chaleureux, d'égal à égal, souvenir de tranchée |
+| Ancien collaborateur direct | Orienté attention : on investit, on n'extrait pas |
+| Ancien client | Non transactionnel, la non-demande doit être prouvée |
+| Transverse ou éteint | Sans pression, porte de sortie intégrée |
 
-Templates for each in EN and FR, with reply-handling guidance per archetype.
+Une seule accroche ne peut pas couvrir les cinq. C'est la raison d'être des modèles.
 
-## The 7-phase workflow
+## Les 7 phases
 
-1. **Build the tracking infrastructure** (Notion, Airtable, or spreadsheet)
-2. **Source the contact list** (LinkedIn CSV + brain-dump in parallel)
-3. **Classify and triage** (script-assisted for breadth, manual for depth)
-4. **Draft DMs using templates**
-5. **Coach review loop** (this is non-optional)
-6. **Send and track**
-7. **Reply handling** (where most reconnection campaigns die)
+1. Poser l'infrastructure de suivi
+2. Constituer la liste (export CSV LinkedIn + vidage de mémoire)
+3. Classer et trier
+4. Rédiger les messages à partir des modèles
+5. Faire relire par un coach
+6. Envoyer et suivre
+7. Conduire la réponse
 
-Full detail in `SKILL.md`.
+Détail complet dans `SKILL.md`.
 
-## The CSV classifier
+## Le script de classement
 
-`scripts/classify-csv.py` takes a LinkedIn Connections.csv export and your career history (in JSON), and produces an enriched CSV ready to import into Notion or Airtable. It auto-classifies "How we met" against your past employers and buckets contacts into eras based on connection date.
+`scripts/classify-csv.py` prend un export `Connections.csv` de LinkedIn et votre historique de carrière au format JSON, et produit un CSV enrichi prêt à importer dans Notion ou Airtable. Il classe automatiquement le champ « Où on s'est connus » en confrontant l'employeur du contact à vos anciens employeurs, et range les contacts par époque à partir de la date de mise en relation.
 
 ```bash
 python scripts/classify-csv.py \
   --csv connections.csv \
-  --career my-career.json \
-  --output enriched.csv
+  --career mon-parcours.json \
+  --output enrichi.csv
 ```
 
-Manual review still required: relationship type, geo, priority, and strength all need human judgement.
+La revue manuelle reste indispensable : le type de relation, la géo, la priorité et la force du lien relèvent tous du jugement humain.
 
-## Credits
+## Crédits
 
-Built by Julien Amar (Coyote Consulting) in April 2026. Methodology informed by working with Sandy Cohen on a structured LinkedIn reactivation campaign for a senior interim mission search.
+Construit par Julien Amar, Coyote Consulting, en avril 2026, à partir d'une campagne réelle de réactivation menée sur un réseau de plus de vingt ans.
 
-## License
+## Licence
 
-Use it, share it, fork it. No warranty. If you build on top, a mention in your post is appreciated but not required.
+MIT. Servez-vous, partagez, forkez. Sans garantie. Si vous construisez par-dessus, une mention fait plaisir mais n'est pas exigée.
